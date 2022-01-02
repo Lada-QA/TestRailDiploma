@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="3" name="Test suite" parallel="classes">
+    <test name="Tests">
+        <!--          <groups>-->
+        <!--                    <run>-->
+        <!--                        <include name="Smoke" />-->
+        <!--                    </run>-->
+        <!--                </groups>-->
+        <classes>
+<!--            <class name="tests.CartTests"/>-->
+<!--            <class name="tests.LoginTests"/>-->
+<!--            <class name="tests.CheckoutTests"/>-->
+            <!--            <parameter name="password" value="password"></parameter>-->
+            <!--            <parameter name="email" value="test@mailinator.com"></parameter>-->
+        </classes>
+    </test> <!-- Test -->
+    <!--    <test name="test 2">-->
+    <!--        <classes>-->
+    <!--        </classes>-->
+    <!--    </test> &lt;!&ndash; Test &ndash;&gt;-->
+</suite>

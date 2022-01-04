@@ -17,6 +17,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@id='button_primary']")
     public WebElement clickLoginButton;
 
+    @FindBy(xpath = "//*[@class='error-text']")
+    public WebElement getErrorText;
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -32,5 +35,14 @@ public class LoginPage extends BasePage {
 
     public void clickLoginButton() {
         clickLoginButton.click();
+    }
+
+    public void fillingFieldsForLoginWithInvalidData(String email, String password) {
+        inputFieldEmail.sendKeys(email);
+        inputFieldPassword.sendKeys(password);
+    }
+
+    public String getErrorMessage() {
+        return getErrorText.getText();
     }
 }

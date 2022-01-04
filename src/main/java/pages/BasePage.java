@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 @Log4j2
-public class BasePage implements Constants  {
+public class BasePage implements Constants {
     WebDriver driver;
 
     public BasePage(WebDriver driver) {

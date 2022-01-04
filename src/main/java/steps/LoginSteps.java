@@ -42,4 +42,20 @@ public class LoginSteps {
     public void clickLoginButton() {
         loginPage.clickLoginButton();
     }
+
+    @And("filling in not standard email and password on Login page")
+    public void fillingInNotStandardEmailAndPasswordOnLoginPage() {
+        loginPage.fillingFieldsForLoginWithInvalidData(System.getProperty("invalidEmail", PropertyReader.getProperty("invalidEmail")),
+                System.getProperty("invalidPassword", PropertyReader.getProperty("invalidPassword")));
+    }
+
+    @Then("User getting error text - Sorry, there was a problem.")
+    public void getErrorText() {
+        Assert.assertEquals(loginPage.getErrorMessage(), "Email/Login or Password is incorrect. Please try again.");
+    }
+
+    @Then("Verify Login page is opened")
+    public void verifyLoginPageIsOpened() {
+        Assert.assertEquals(loginPage.getUrl(), "https://lada29.testrail.io/index.php?/auth/login");
+    }
 }

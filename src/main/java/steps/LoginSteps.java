@@ -1,6 +1,7 @@
 package steps;
 
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -19,27 +20,26 @@ public class LoginSteps {
     WebDriver driver;
 
     @Before
-    public void initProjectsPage() {
+    public void initPages() {
         driver = Driver.getDriver();
         basePage = new BasePage(driver);
         loginPage = new LoginPage(driver);
     }
 
-    @Given("User opens TestRail base page")
-    public void openPage() {
+    @Given("User opens TestRail login page")
+    public void openLoginPage() {
         loginPage.openPage();
     }
 
 
-    @When("Filling fields with email and password")
+    @And("filling in standard email and password on Login page")
     public void fillingFieldsWithEmailAndPassword() {
         loginPage.fillingFieldsForLogin(System.getProperty("email", PropertyReader.getProperty("email")),
                 System.getProperty("password", PropertyReader.getProperty("password")));
     }
 
-    @Then("Click login button")
-    public void gettingToTheMainPageOfTheSite() {
+    @When("User clicks login button")
+    public void clickLoginButton() {
         loginPage.clickLoginButton();
-        Assert.assertEquals(loginPage.getUrl(), "https://lada29.testrail.io/index.php?/dashboard");
     }
 }

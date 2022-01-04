@@ -1,30 +1,36 @@
 package pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Log4j2
 public class LoginPage extends BasePage {
+
+    @FindBy(xpath = "//*[@id='name']")
+    public WebElement inputFieldEmail;
+
+    @FindBy(xpath = "//*[@id='password']")
+    public WebElement inputFieldPassword;
+
+    @FindBy(xpath = "//*[@id='button_primary']")
+    public WebElement clickLoginButton;
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
-    @FindBy(xpath = "//*[@id='name']")
-    private WebElement inputFieldEmail;
 
-    @FindBy(xpath = "//*[@id='password']")
-    private WebElement inputFieldPassword;
+    public void openPage() {
+        openURL(BASE_URL);
+    }
 
-    @FindBy(xpath = "//*[@id='button_primary']")
-    private WebElement clickLoginButton;
+    public void fillingFieldsForLogin(String email, String password) {
+        inputFieldEmail.sendKeys(email);
+        inputFieldPassword.sendKeys(password);
+    }
 
-public void fillingFieldForLogin(String email, String password){
-    inputFieldEmail.sendKeys(email);
-    inputFieldPassword.sendKeys(password);
-}
-public void clickLogInButton(){
-    clickLoginButton.click();
-}
-    public String getUrl() {
-        return driver.getCurrentUrl();
+    public void clickLoginButton() {
+        clickLoginButton.click();
     }
 }

@@ -1,8 +1,12 @@
 package steps;
 
+import adapters.ProjectsAdapter;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import objects.Project;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.BasePage;
@@ -11,6 +15,7 @@ import pages.LoginPage;
 import webdriver.Driver;
 
 import static constants.Constants.DASHBOARD_URL;
+import static constants.Constants.PROJECT_ID;
 
 public class HomePageSteps {
     private LoginPage loginPage;
@@ -34,5 +39,22 @@ public class HomePageSteps {
     @And("the user successfully logs out of the system")
     public void theUserSuccessfullyLogsOutOfTheSystem() {
         homePage.clickLogoutButton();
+    }
+
+    @Given("User set POST a new project using API")
+    public void userSetPOSTANewProjectUsingAPI() {
+        Project project = Project.builder()
+                .name("This is a test project")
+                .announcement("This is test project for API")
+                .showAnnouncement(true)
+                .build();
+        new ProjectsAdapter().createNewProject(project);
+    }
+
+    @Then("User receive valid Response")
+    public void userReceiveValidResponse() {
+        new ProjectsAdapter()
+                .get("/25");
+        Assert.assertEquals(ProjectsAdapter.PROJECT_ID, PROJECT_ID);
     }
 }

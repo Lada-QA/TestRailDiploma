@@ -6,3 +6,7 @@ Feature: Logout
     When User clicks login button
     And the user successfully logs out of the system
     Then Verify Login page is opened
+
+  Scenario: Add a new project using API
+    Given User set POST a new project using API
+    Then User receive valid Response

@@ -13,6 +13,8 @@ import pages.LoginPage;
 import utils.PropertyReader;
 import webdriver.Driver;
 
+import static constants.Constants.AUTH_LOGIN;
+
 @Log4j2
 public class LoginSteps {
     private BasePage basePage;
@@ -43,7 +45,7 @@ public class LoginSteps {
         loginPage.clickLoginButton();
     }
 
-    @And("filling in not standard email and password on Login page")
+    @And("filling in invalid email and password on Login page")
     public void fillingInNotStandardEmailAndPasswordOnLoginPage() {
         loginPage.fillingFieldsForLoginWithInvalidData(System.getProperty("invalidEmail", PropertyReader.getProperty("invalidEmail")),
                 System.getProperty("invalidPassword", PropertyReader.getProperty("invalidPassword")));
@@ -56,6 +58,6 @@ public class LoginSteps {
 
     @Then("Verify Login page is opened")
     public void verifyLoginPageIsOpened() {
-        Assert.assertEquals(loginPage.getUrl(), "https://lada29.testrail.io/index.php?/auth/login");
+        Assert.assertEquals(loginPage.getUrl(), AUTH_LOGIN);
     }
 }

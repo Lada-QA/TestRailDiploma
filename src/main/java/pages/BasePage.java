@@ -15,7 +15,7 @@ public class BasePage implements Constants {
         PageFactory.initElements(this.driver, this);
     }
 
-    public void openURL(String url) {
+    public void openUrl(String url) {
         log.info("Open url: " + url);
         driver.get(url);
     }

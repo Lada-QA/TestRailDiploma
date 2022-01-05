@@ -25,7 +25,7 @@ public class LoginPage extends BasePage {
     }
 
     public void openPage() {
-        openURL(BASE_URL);
+        openUrl(BASE_URL);
     }
 
     public void fillingFieldsForLogin(String email, String password) {

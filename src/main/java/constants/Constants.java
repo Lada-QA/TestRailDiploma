@@ -1,5 +1,7 @@
 package constants;
 
 public interface Constants {
-    String BASE_URL = "https://lada29.testrail.io/index.php?/auth/login";
+    String BASE_URL = "https://lada29.testrail.io/index.php?";
+    String AUTH_LOGIN = BASE_URL + "/auth/login";
+    String DASHBOARD_URL = BASE_URL + "/dashboard";
 }

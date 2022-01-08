@@ -1,12 +1,13 @@
 package steps;
 
 import adapters.ProjectsAdapter;
+import com.google.gson.Gson;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import objects.Project;
+import objects.ProjectList;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.BasePage;
@@ -14,8 +15,8 @@ import pages.HeaderPage;
 import pages.LoginPage;
 import webdriver.Driver;
 
+import static constants.APIConstants.GET_PROJECT_API;
 import static constants.Constants.DASHBOARD_URL;
-import static constants.Constants.PROJECT_ID;
 
 public class HomePageSteps {
     private LoginPage loginPage;
@@ -42,7 +43,7 @@ public class HomePageSteps {
     }
 
     @Given("User set POST a new project using API")
-    public void userSetPOSTANewProjectUsingAPI() {
+    public void userSetPostNewProjectUsingAPI() {
         Project project = Project.builder()
                 .name("This is a test project")
                 .announcement("This is test project for API")
@@ -51,10 +52,15 @@ public class HomePageSteps {
         new ProjectsAdapter().createNewProject(project);
     }
 
-    @Then("User receive valid Response")
+    @Then("Verify project is created successfully via API")
     public void userReceiveValidResponse() {
         new ProjectsAdapter()
-                .get("/25");
-        Assert.assertEquals(ProjectsAdapter.PROJECT_ID, PROJECT_ID);
+                .get(GET_PROJECT_API);
+        String body = new ProjectsAdapter().getProject();
+        ProjectList projectList = new Gson().fromJson(body, ProjectList.class);
+        String nameProjectFromApi = projectList.getProjects().get(1).getName();
+        String announcementFromApi = projectList.getProjects().get(1).getAnnouncement();
+        Assert.assertEquals(projectList.getProjects().get(0).getName(), nameProjectFromApi);
+        Assert.assertEquals(projectList.getProjects().get(0).getAnnouncement(), announcementFromApi);
     }
 }

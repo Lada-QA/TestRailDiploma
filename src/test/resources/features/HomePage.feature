@@ -9,4 +9,4 @@ Feature: Logout
 
   Scenario: Add a new project using API
     Given User set POST a new project using API
-    Then User receive valid Response
+    Then Verify project is created successfully via API

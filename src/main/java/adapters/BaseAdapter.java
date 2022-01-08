@@ -1,34 +1,31 @@
 package adapters;
 
 import com.google.gson.Gson;
-import constants.Constants;
-import io.cucumber.java.Before;
+import constants.APIConstants;
 import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
 import utils.PropertyReader;
 
 import static io.restassured.RestAssured.given;
 
-public class BaseAdapters implements Constants {
+public class BaseAdapter implements APIConstants {
 
     Gson converter = new Gson();
 
-    @Before
-    public void setup() {
-        final String baseUrl = BASE_URL;
-    }
-
-    public String get(String url) {
+    public ResponseBody get(String url) {
         return given()
+                .log().all()
                 .auth()
                 .preemptive()
                 .basic(System.getProperty("email", PropertyReader.getProperty("email")),
                         System.getProperty("password", PropertyReader.getProperty("password")))
                 .header(CONTENT_TYPE_VALUE, APPLICATION_JSON_VALUE)
                 .when()
-                .get(PROJECT_ID + url)
+                .get(url)
                 .then()
                 .log().all()
-                .extract().body().asString();
+                .statusCode(200)
+                .extract().response();
     }
 
     public Response post(String url, String body) {
@@ -43,6 +40,7 @@ public class BaseAdapters implements Constants {
                 .post(url)
                 .then()
                 .log().all()
+                .statusCode(200)
                 .extract().response();
     }
 }

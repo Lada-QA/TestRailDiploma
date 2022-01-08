@@ -4,11 +4,15 @@ package adapters;
 import io.restassured.response.ResponseBody;
 import objects.Project;
 
-public class ProjectsAdapter extends BaseAdapters {
+public class ProjectsAdapter extends BaseAdapter {
 
 
     public ResponseBody createNewProject(Project project) {
         return
-                post(PROJECT_API, this.converter.toJson(project)).body();
+                post(ADD_PROJECT_API, this.converter.toJson(project)).body();
+    }
+
+    public String getProject() {
+        return this.get(GET_PROJECT_API).asString();
     }
 }

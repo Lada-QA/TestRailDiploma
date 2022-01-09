@@ -15,4 +15,8 @@ public class ProjectsAdapter extends BaseAdapter {
     public String getProject() {
         return this.get(GET_PROJECT_API).asString();
     }
+
+    public ResponseBody updateProject(Project project) {
+        return post(UPDATE_PROJECT_API, this.converter.toJson(project)).body();
+    }
 }

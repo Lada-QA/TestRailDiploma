@@ -7,7 +7,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import objects.Project;
-import objects.ProjectList;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.BasePage;
@@ -42,11 +41,11 @@ public class HomePageSteps {
         homePage.clickLogoutButton();
     }
 
-    @Given("User set POST a new project using API")
-    public void userSetPostNewProjectUsingAPI() {
+    @Given("User set POST a new project {string} and announcement {string} using API")
+    public void userSetPostNewProjectUsingAPI(String nameProject, String nameAnnouncement) {
         Project project = Project.builder()
-                .name("This is a test project")
-                .announcement("This is test project for API")
+                .name(nameProject)
+                .announcement(nameAnnouncement)
                 .showAnnouncement(true)
                 .build();
         new ProjectsAdapter().createNewProject(project);
@@ -57,10 +56,20 @@ public class HomePageSteps {
         new ProjectsAdapter()
                 .get(GET_PROJECT_API);
         String body = new ProjectsAdapter().getProject();
-        ProjectList projectList = new Gson().fromJson(body, ProjectList.class);
-        String nameProjectFromApi = projectList.getProjects().get(1).getName();
-        String announcementFromApi = projectList.getProjects().get(1).getAnnouncement();
-        Assert.assertEquals(projectList.getProjects().get(0).getName(), nameProjectFromApi);
-        Assert.assertEquals(projectList.getProjects().get(0).getAnnouncement(), announcementFromApi);
+        Project project = new Gson().fromJson(body, Project.class);
+        String nameProjectFromApi = project.getName();
+        String announcementFromApi = project.getAnnouncement();
+        Assert.assertEquals(project.getName(), nameProjectFromApi);
+        Assert.assertEquals(project.getAnnouncement(), announcementFromApi);
+    }
+
+    @Given("User set POST request for updating the project {string} with changed announcement {string} using API")
+    public void userSetPostRequestForUpdatingTheProject(String nameProject, String nameAnnouncement) {
+        Project project = Project.builder()
+                .name(nameProject)
+                .announcement(nameAnnouncement)
+                .showAnnouncement(true)
+                .build();
+        new ProjectsAdapter().updateProject(project);
     }
 }

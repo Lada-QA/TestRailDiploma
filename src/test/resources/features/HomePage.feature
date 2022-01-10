@@ -14,3 +14,7 @@ Feature: Logout
   Scenario: Update the project using API
     Given User set POST request for updating the project 'This is a test project API' with changed announcement 'Happy weekends' using API
     Then  Verify project is created successfully via API
+
+  Scenario: Add new suite in the project
+    Given User set POST request for add new suite 'This is a new test suite' with description 'Use the description to add additional context details' in the project using API
+    Then Verify suite is created successfully via API

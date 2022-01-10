@@ -3,7 +3,6 @@ package adapters;
 import com.google.gson.Gson;
 import constants.APIConstants;
 import io.restassured.response.Response;
-import io.restassured.response.ResponseBody;
 import utils.PropertyReader;
 
 import static io.restassured.RestAssured.given;
@@ -12,7 +11,7 @@ public class BaseAdapter implements APIConstants {
 
     Gson converter = new Gson();
 
-    public ResponseBody get(String url) {
+    public Response get(String url) {
         return given()
                 .log().all()
                 .auth()

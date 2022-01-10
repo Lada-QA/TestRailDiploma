@@ -7,6 +7,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import objects.Project;
+import objects.Suite;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.BasePage;
@@ -14,7 +15,6 @@ import pages.HeaderPage;
 import pages.LoginPage;
 import webdriver.Driver;
 
-import static constants.APIConstants.GET_PROJECT_API;
 import static constants.Constants.DASHBOARD_URL;
 
 public class HomePageSteps {
@@ -22,6 +22,8 @@ public class HomePageSteps {
     private BasePage basePage;
     private HeaderPage homePage;
     WebDriver driver;
+    int projectId = 65;
+    int suiteId = 2;
 
     @Before
     public void initPages() {
@@ -44,6 +46,7 @@ public class HomePageSteps {
     @Given("User set POST a new project {string} and announcement {string} using API")
     public void userSetPostNewProjectUsingAPI(String nameProject, String nameAnnouncement) {
         Project project = Project.builder()
+                .id(projectId)
                 .name(nameProject)
                 .announcement(nameAnnouncement)
                 .showAnnouncement(true)
@@ -52,10 +55,8 @@ public class HomePageSteps {
     }
 
     @Then("Verify project is created successfully via API")
-    public void userReceiveValidResponse() {
-        new ProjectsAdapter()
-                .get(GET_PROJECT_API);
-        String body = new ProjectsAdapter().getProject();
+    public void verifyProjectIsCreatedSuccessfully() {
+        String body = new ProjectsAdapter().getProject(projectId);
         Project project = new Gson().fromJson(body, Project.class);
         String nameProjectFromApi = project.getName();
         String announcementFromApi = project.getAnnouncement();
@@ -70,6 +71,25 @@ public class HomePageSteps {
                 .announcement(nameAnnouncement)
                 .showAnnouncement(true)
                 .build();
-        new ProjectsAdapter().updateProject(project);
+        new ProjectsAdapter().updateProject(project, projectId);
+    }
+
+    @Given("User set POST request for add new suite {string} with description {string} in the project using API")
+    public void userSetPostRequestForAddNewSuiteInTheProject(String nameSuite, String descriptionSuite) {
+        Suite suite = Suite.builder()
+                .name(nameSuite)
+                .description(descriptionSuite)
+                .build();
+        new ProjectsAdapter().createSuite(suite, projectId);
+    }
+
+    @Then("Verify suite is created successfully via API")
+    public void verifySuiteIsCreatedSuccessfully() {
+        String body = new ProjectsAdapter().getSuite(suiteId);
+        Suite suite = new Gson().fromJson(body, Suite.class);
+        String nameSuiteFromAPI = suite.getName();
+        String descriptionFromAPI = suite.getDescription();
+        Assert.assertEquals(suite.getName(), nameSuiteFromAPI);
+        Assert.assertEquals(suite.getDescription(), descriptionFromAPI);
     }
 }

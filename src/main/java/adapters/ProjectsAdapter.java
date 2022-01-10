@@ -3,6 +3,7 @@ package adapters;
 
 import io.restassured.response.ResponseBody;
 import objects.Project;
+import objects.Suite;
 
 public class ProjectsAdapter extends BaseAdapter {
 
@@ -12,11 +13,19 @@ public class ProjectsAdapter extends BaseAdapter {
                 post(ADD_PROJECT_API, this.converter.toJson(project)).body();
     }
 
-    public String getProject() {
-        return this.get(GET_PROJECT_API).asString();
+    public String getProject(int projectId) {
+        return this.get(String.format(GET_PROJECT_API, projectId)).body().asString();
     }
 
-    public ResponseBody updateProject(Project project) {
-        return post(UPDATE_PROJECT_API, this.converter.toJson(project)).body();
+    public ResponseBody updateProject(Project project, int projectId) {
+        return post(String.format(UPDATE_PROJECT_API, projectId), this.converter.toJson(project)).body();
+    }
+
+    public ResponseBody createSuite(Suite suite, int projectId) {
+        return post(String.format(ADD_SUITE_API, projectId), this.converter.toJson(suite)).body();
+    }
+
+    public String getSuite(int projectId) {
+        return this.get(String.format(GET_SUITE_API, projectId)).asString();
     }
 }

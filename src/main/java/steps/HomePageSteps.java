@@ -15,22 +15,20 @@ import pages.HeaderPage;
 import pages.LoginPage;
 import webdriver.Driver;
 
-import static constants.Constants.DASHBOARD_URL;
+import static constants.Constants.*;
 
 public class HomePageSteps {
     private LoginPage loginPage;
     private BasePage basePage;
-    private HeaderPage homePage;
+    private HeaderPage headerPage;
     WebDriver driver;
-    int projectId = 65;
-    int suiteId = 2;
 
     @Before
     public void initPages() {
         driver = Driver.getDriver();
         basePage = new BasePage(driver);
         loginPage = new LoginPage(driver);
-        homePage = new HeaderPage(driver);
+        headerPage = new HeaderPage(driver);
     }
 
     @Then("Verify Home page is opened")
@@ -40,13 +38,13 @@ public class HomePageSteps {
 
     @And("the user successfully logs out of the system")
     public void theUserSuccessfullyLogsOutOfTheSystem() {
-        homePage.clickLogoutButton();
+        headerPage.clickLogoutButton();
     }
 
-    @Given("User set POST a new project {string} and announcement {string} using API")
+    @Given("User send POST a new project {string} and announcement {string} using API")
     public void userSetPostNewProjectUsingAPI(String nameProject, String nameAnnouncement) {
         Project project = Project.builder()
-                .id(projectId)
+                .id(PROJECT_ID)
                 .name(nameProject)
                 .announcement(nameAnnouncement)
                 .showAnnouncement(true)
@@ -56,7 +54,7 @@ public class HomePageSteps {
 
     @Then("Verify project is created successfully via API")
     public void verifyProjectIsCreatedSuccessfully() {
-        String body = new ProjectsAdapter().getProject(projectId);
+        String body = new ProjectsAdapter().getProject(PROJECT_ID);
         Project project = new Gson().fromJson(body, Project.class);
         String nameProjectFromApi = project.getName();
         String announcementFromApi = project.getAnnouncement();
@@ -64,28 +62,28 @@ public class HomePageSteps {
         Assert.assertEquals(project.getAnnouncement(), announcementFromApi);
     }
 
-    @Given("User set POST request for updating the project {string} with changed announcement {string} using API")
+    @Given("User send POST request for updating the project {string} with changed announcement {string} using API")
     public void userSetPostRequestForUpdatingTheProject(String nameProject, String nameAnnouncement) {
         Project project = Project.builder()
                 .name(nameProject)
                 .announcement(nameAnnouncement)
                 .showAnnouncement(true)
                 .build();
-        new ProjectsAdapter().updateProject(project, projectId);
+        new ProjectsAdapter().updateProject(project, PROJECT_ID);
     }
 
-    @Given("User set POST request for add new suite {string} with description {string} in the project using API")
+    @Given("User send POST request for add new suite {string} with description {string} in the project using API")
     public void userSetPostRequestForAddNewSuiteInTheProject(String nameSuite, String descriptionSuite) {
         Suite suite = Suite.builder()
                 .name(nameSuite)
                 .description(descriptionSuite)
                 .build();
-        new ProjectsAdapter().createSuite(suite, projectId);
+        new ProjectsAdapter().createSuite(suite, PROJECT_ID);
     }
 
     @Then("Verify suite is created successfully via API")
     public void verifySuiteIsCreatedSuccessfully() {
-        String body = new ProjectsAdapter().getSuite(suiteId);
+        String body = new ProjectsAdapter().getSuite(SUITE_ID);
         Suite suite = new Gson().fromJson(body, Suite.class);
         String nameSuiteFromAPI = suite.getName();
         String descriptionFromAPI = suite.getDescription();

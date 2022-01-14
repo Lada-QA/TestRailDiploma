@@ -1,26 +1,17 @@
 package steps;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import utils.PropertyReader;
-import webdriver.Driver;
 
 import static constants.Constants.AUTH_LOGIN;
 
 @Log4j2
 public class LoginSteps extends AbstractSteps {
-    WebDriver driver;
-
-    @Before
-    public void initPages() {
-        driver = Driver.getDriver();
-    }
 
     @Given("User opens TestRail login page")
     public void openLoginPage() {

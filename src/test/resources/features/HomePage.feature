@@ -20,5 +20,6 @@ Feature: Logout
     Then Verify suite is created successfully via API
 
   Scenario: Delete project - This is a test project API
-    Given User send POST request for delete the project 'This is a test project API'
-    Then Verify project is delete successfully via API
+    Given User send POST a new project 'This is a test project API' using API
+    Then User send POST request for delete the project 'This is a test project API'
+    And Verify project is delete successfully via API

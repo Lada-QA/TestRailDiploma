@@ -2,25 +2,17 @@ package steps;
 
 import adapters.ProjectsAdapter;
 import com.google.gson.Gson;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import objects.Project;
 import objects.Suite;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import webdriver.Driver;
 
+import static constants.APIConstants.DELETE_PROJECT_ID;
 import static constants.Constants.*;
 
 public class HomePageSteps extends AbstractSteps {
-    WebDriver driver;
-
-    @Before
-    public void initPages() {
-        driver = Driver.getDriver();
-    }
 
     @Then("Verify Home page is opened")
     public void verifyHomePageIsOpened() {
@@ -82,18 +74,28 @@ public class HomePageSteps extends AbstractSteps {
         Assert.assertEquals(suite.getDescription(), descriptionFromAPI);
     }
 
-    @Given("User send POST request for delete the project {string}")
+    @Given("User send POST a new project {string} using API")
+    public void userSendPostCreateNewProjectUsingAPI(String nameProject) {
+        Project project = Project.builder()
+                .id(DELETE_PROJECT_ID)
+                .name(nameProject)
+                .announcement("name announcement")
+                .build();
+        new ProjectsAdapter().createNewProject(project);
+    }
+
+    @Then("User send POST request for delete the project {string}")
     public void userSendPostRequestForDeleteTheProject(String nameProject) {
         Project project = Project.builder()
                 .name(nameProject)
-                .announcement("This is test project for API")
+                .announcement("name announcement")
                 .build();
-        new ProjectsAdapter().deleteProject(project, PROJECT_ID);
+        new ProjectsAdapter().deleteProject(project, DELETE_PROJECT_ID);
     }
 
-    @Then("Verify project is delete successfully via API")
+    @And("Verify project is delete successfully via API")
     public void verifyProjectIsDeleteSuccessfullyViaAPI() {
-        int code = new ProjectsAdapter().getStatusCode(PROJECT_ID);
+        int code = new ProjectsAdapter().getStatusCode(DELETE_PROJECT_ID);
         Assert.assertEquals(code, 401);
     }
 }

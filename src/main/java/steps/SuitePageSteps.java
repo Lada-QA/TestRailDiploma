@@ -1,21 +1,12 @@
 package steps;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import webdriver.Driver;
 
 
 public class SuitePageSteps extends AbstractSteps {
-    WebDriver driver;
-
-    @Before
-    public void initPages() {
-        driver = Driver.getDriver();
-    }
 
     @When("User add section {string} and description {string} in project - This is a test project API")
     public void userAddSectionThisIsASectionInProjectThisIsATestProjectAPI(String sectionName, String sectionDescription) {

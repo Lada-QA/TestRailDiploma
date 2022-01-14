@@ -10,4 +10,5 @@ public interface APIConstants {
     String UPDATE_PROJECT_API = BASE_URL + "/api/v2/update_project/%s";
     String ADD_SUITE_API  = BASE_URL + "/api/v2/add_suite/%s";
     String GET_SUITE_API = BASE_URL + "/api/v2/get_suite/%s";
+    String DELETE_PROJECT_API = BASE_URL + "/api/v2/delete_project/%s";
 }

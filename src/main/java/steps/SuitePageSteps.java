@@ -6,29 +6,16 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import pages.BasePage;
-import pages.CasePage;
-import pages.HeaderPage;
-import pages.SuitePage;
 import webdriver.Driver;
 
 
-public class SuitePageSteps {
-    private BasePage basePage;
-    private SuitePage suitePage;
-    private HeaderPage headerPage;
-    private CasePage casePage;
+public class SuitePageSteps extends AbstractSteps {
     WebDriver driver;
 
     @Before
     public void initPages() {
         driver = Driver.getDriver();
-        basePage = new BasePage(driver);
-        suitePage = new SuitePage(driver);
-        headerPage = new HeaderPage(driver);
-        casePage = new CasePage(driver);
     }
-
 
     @When("User add section {string} and description {string} in project - This is a test project API")
     public void userAddSectionThisIsASectionInProjectThisIsATestProjectAPI(String sectionName, String sectionDescription) {

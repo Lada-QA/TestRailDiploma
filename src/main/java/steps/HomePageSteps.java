@@ -10,25 +10,16 @@ import objects.Project;
 import objects.Suite;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import pages.BasePage;
-import pages.HeaderPage;
-import pages.LoginPage;
 import webdriver.Driver;
 
 import static constants.Constants.*;
 
-public class HomePageSteps {
-    private LoginPage loginPage;
-    private BasePage basePage;
-    private HeaderPage headerPage;
+public class HomePageSteps extends AbstractSteps {
     WebDriver driver;
 
     @Before
     public void initPages() {
         driver = Driver.getDriver();
-        basePage = new BasePage(driver);
-        loginPage = new LoginPage(driver);
-        headerPage = new HeaderPage(driver);
     }
 
     @Then("Verify Home page is opened")
@@ -89,5 +80,20 @@ public class HomePageSteps {
         String descriptionFromAPI = suite.getDescription();
         Assert.assertEquals(suite.getName(), nameSuiteFromAPI);
         Assert.assertEquals(suite.getDescription(), descriptionFromAPI);
+    }
+
+    @Given("User send POST request for delete the project {string}")
+    public void userSendPostRequestForDeleteTheProject(String nameProject) {
+        Project project = Project.builder()
+                .name(nameProject)
+                .announcement("This is test project for API")
+                .build();
+        new ProjectsAdapter().deleteProject(project, PROJECT_ID);
+    }
+
+    @Then("Verify project is delete successfully via API")
+    public void verifyProjectIsDeleteSuccessfullyViaAPI() {
+        int code = new ProjectsAdapter().getStatusCode(PROJECT_ID);
+        Assert.assertEquals(code, 401);
     }
 }

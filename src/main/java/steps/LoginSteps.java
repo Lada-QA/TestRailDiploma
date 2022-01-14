@@ -8,24 +8,18 @@ import io.cucumber.java.en.When;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import pages.BasePage;
-import pages.LoginPage;
 import utils.PropertyReader;
 import webdriver.Driver;
 
 import static constants.Constants.AUTH_LOGIN;
 
 @Log4j2
-public class LoginSteps {
-    private BasePage basePage;
-    private LoginPage loginPage;
+public class LoginSteps extends AbstractSteps {
     WebDriver driver;
 
     @Before
     public void initPages() {
         driver = Driver.getDriver();
-        basePage = new BasePage(driver);
-        loginPage = new LoginPage(driver);
     }
 
     @Given("User opens TestRail login page")

@@ -18,3 +18,7 @@ Feature: Logout
   Scenario: Add new suite in the project
     Given User send POST request for add new suite 'This is a new test suite' with description 'Use the description to add additional context details' in the project using API
     Then Verify suite is created successfully via API
+
+  Scenario: Delete project - This is a test project API
+    Given User send POST request for delete the project 'This is a test project API'
+    Then Verify project is delete successfully via API

@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MilestonePage extends BasePage{
+public class MilestonePage extends BasePage {
 
     public MilestonePage(WebDriver driver) {
         super(driver);

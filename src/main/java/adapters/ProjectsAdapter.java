@@ -1,6 +1,7 @@
 package adapters;
 
 
+import io.restassured.RestAssured;
 import io.restassured.response.ResponseBody;
 import objects.Project;
 import objects.Suite;
@@ -27,5 +28,13 @@ public class ProjectsAdapter extends BaseAdapter {
 
     public String getSuite(int projectId) {
         return this.get(String.format(GET_SUITE_API, projectId)).asString();
+    }
+
+    public int deleteProject(Project project, int projectId) {
+        return post(String.format(DELETE_PROJECT_API, projectId), this.converter.toJson(project)).getStatusCode();
+    }
+
+    public int getStatusCode(int projectID) {
+        return RestAssured.get(String.format(GET_PROJECT_API, projectID)).getStatusCode();
     }
 }

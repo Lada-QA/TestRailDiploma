@@ -28,7 +28,7 @@ public class MilestonePage extends BasePage{
     @FindBy(id = "accept")
     public WebElement clickToSaveMilestoneButton;
 
-    @FindBy(xpath = "//*[@class = 'message message-success']")
+    @FindBy(xpath = "//*[contains(@class, 'message-success')]")
     public WebElement getMessageMilestone;
 
     public MilestonePage addNewMilestoneForProject(String nameMilestone, String references, String description) {
@@ -41,7 +41,7 @@ public class MilestonePage extends BasePage{
         return this;
     }
 
-    public String getMessageSuccess() {
+    public String getSuccessMessage() {
         return getMessageMilestone.getText();
     }
 }

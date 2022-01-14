@@ -32,6 +32,6 @@ public class MilestonePageSteps {
 
     @Then("Verify milestone was added")
     public void verifyMilestoneWasAdded() {
-        Assert.assertEquals(milestonePage.getMessageSuccess(), "Successfully added the new milestone.");
+        Assert.assertEquals(milestonePage.getSuccessMessage(), "Successfully added the new milestone.");
     }
 }

@@ -31,7 +31,7 @@ public class RunsPage extends BasePage {
     @FindBy(xpath = "//*[@id = 'assignedto_id_chzn']//*[text()='Me']")
     public WebElement setAssigned;
 
-    @FindBy(xpath = "//*[@class = 'button button-left button-positive button-ok dialog-action-default']")
+    @FindBy(xpath = "//*[contains(@class,'button-ok')]/ancestor::*[@id='chooseSuiteForm']//button")
     public WebElement clickButtonOk;
 
     @FindBy(xpath = "//*[@class = 'message message-success']")
@@ -53,7 +53,7 @@ public class RunsPage extends BasePage {
         return this;
     }
 
-    public String getMessageSuccess() {
+    public String getSuccessMessage() {
         return  getMessage.getText();
     }
 }

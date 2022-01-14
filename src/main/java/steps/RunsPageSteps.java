@@ -33,6 +33,6 @@ public class RunsPageSteps {
 
     @Then("Verify test run was added")
     public void verifyTestRunWasAdded() {
-        Assert.assertEquals(runsPage.getMessageSuccess(), "Successfully added the new test run.");
+        Assert.assertEquals(runsPage.getSuccessMessage(), "Successfully added the new test run.");
     }
 }

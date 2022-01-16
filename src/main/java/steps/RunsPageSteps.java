@@ -6,13 +6,12 @@ import org.testng.Assert;
 
 public class RunsPageSteps extends AbstractSteps {
 
-    @And("goes to the project and add new test run")
+    @Then("goes to the project and add new test run")
     public void goesToTheProjectAndAddNewTestRun() {
-        headerPage.clickTestSuiteLinkForProject();
         runsPage.addNewRunTestForProject();
     }
 
-    @Then("Verify test run was added")
+    @And("Verify test run was added")
     public void verifyTestRunWasAdded() {
         Assert.assertEquals(runsPage.getSuccessMessage(), "Successfully added the new test run.");
     }

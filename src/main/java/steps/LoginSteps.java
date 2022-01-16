@@ -1,7 +1,6 @@
 package steps;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.log4j.Log4j2;
@@ -13,7 +12,7 @@ import static constants.Constants.AUTH_LOGIN;
 @Log4j2
 public class LoginSteps extends AbstractSteps {
 
-    @Given("User opens TestRail login page")
+    @When("User opens TestRail login page")
     public void openLoginPage() {
         loginPage.openPage();
     }

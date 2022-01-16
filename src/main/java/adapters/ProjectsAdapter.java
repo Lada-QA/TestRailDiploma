@@ -2,7 +2,7 @@ package adapters;
 
 
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
 import objects.Project;
 
 public class ProjectsAdapter extends BaseAdapter {
@@ -17,8 +17,8 @@ public class ProjectsAdapter extends BaseAdapter {
         return this.get(String.format(GET_PROJECT_API, projectId)).body().asString();
     }
 
-    public Response updateProject(Project project, int projectId) {
-        return post(String.format(UPDATE_PROJECT_API, projectId), this.converter.toJson(project)).body().path("id");
+    public ResponseBody updateProject(Project project, int projectId) {
+        return post(String.format(UPDATE_PROJECT_API, projectId), this.converter.toJson(project)).body();
     }
 
     public int deleteProject(Project project, int projectId) {

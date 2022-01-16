@@ -27,9 +27,9 @@ public class HeaderPage extends BasePage {
         clickLogout.click();
     }
 
-    public SuitePage clickTestSuiteLinkForProject() {
-        log.info("Click on the link for opening project on the 'Test Suites&Cases' page");
-        driver.findElement(By.xpath(String.format(SUITE_TEST_LINK, PROJECT_ID))).click();
+    public SuitePage clickTestSuiteLinkForProject(int idProject) {
+        log.info("Click on the link for opening project on the 'Test Suites&Cases' page via id: "+ idProject);
+        driver.findElement(By.xpath(String.format(SUITE_TEST_LINK, idProject))).click();
         return new SuitePage(driver);
     }
 }

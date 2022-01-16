@@ -1,39 +1,19 @@
 package steps;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import pages.BasePage;
-import pages.CasePage;
-import pages.HeaderPage;
-import pages.SuitePage;
-import webdriver.Driver;
 
+import static steps.HomePageSteps.ID_NEW_PROJECT_FROM_API;
+import static steps.HomePageSteps.ID_SUITE_FROM_API;
 
-public class SuitePageSteps {
-    private BasePage basePage;
-    private SuitePage suitePage;
-    private HeaderPage headerPage;
-    private CasePage casePage;
-    WebDriver driver;
-
-    @Before
-    public void initPages() {
-        driver = Driver.getDriver();
-        basePage = new BasePage(driver);
-        suitePage = new SuitePage(driver);
-        headerPage = new HeaderPage(driver);
-        casePage = new CasePage(driver);
-    }
-
+public class SuitePageSteps extends AbstractSteps {
 
     @When("User add section {string} and description {string} in project - This is a test project API")
     public void userAddSectionThisIsASectionInProjectThisIsATestProjectAPI(String sectionName, String sectionDescription) {
-        headerPage.clickTestSuiteLinkForProject()
-                .clickOnTheTestSuite()
+        headerPage.clickTestSuiteLinkForProject(ID_NEW_PROJECT_FROM_API)
+                .clickOnTheTestSuite(ID_SUITE_FROM_API)
                 .clickAddSection(sectionName, sectionDescription);
     }
 
@@ -44,9 +24,9 @@ public class SuitePageSteps {
 
     @And("add test case {string}")
     public void addTestCaseThisIsATestCase(String testCaseTitle) {
-        headerPage.clickTestSuiteLinkForProject()
-                .clickOnTheTestSuite()
-                .clickTestCase()
+        headerPage.clickTestSuiteLinkForProject(ID_NEW_PROJECT_FROM_API)
+                .clickOnTheTestSuite(ID_SUITE_FROM_API)
+                .clickTestCase(ID_SUITE_FROM_API)
                 .addNewTestCase(testCaseTitle);
     }
 

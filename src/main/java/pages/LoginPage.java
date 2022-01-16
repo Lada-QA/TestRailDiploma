@@ -29,7 +29,9 @@ public class LoginPage extends BasePage {
     }
 
     public void fillingFieldsForLogin(String email, String password) {
+        log.info("Entering the email for login: " + email);
         inputFieldEmail.sendKeys(email);
+        log.info("Entering the password for login: " + password);
         inputFieldPassword.sendKeys(password);
     }
 
@@ -38,11 +40,14 @@ public class LoginPage extends BasePage {
     }
 
     public void fillingFieldsForLoginWithInvalidData(String email, String password) {
+        log.info("Entering the invalid email: " + email);
         inputFieldEmail.sendKeys(email);
+        log.info("Entering the invalid password: " + password);
         inputFieldPassword.sendKeys(password);
     }
 
     public String getErrorMessage() {
+        log.info("Receiving an error message when entering invalid data");
         return getErrorText.getText();
     }
 }

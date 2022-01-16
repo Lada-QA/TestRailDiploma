@@ -1,10 +1,12 @@
 package pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MilestonePage extends BasePage{
+@Log4j2
+public class MilestonePage extends BasePage {
 
     public MilestonePage(WebDriver driver) {
         super(driver);
@@ -32,16 +34,23 @@ public class MilestonePage extends BasePage{
     public WebElement getMessageMilestone;
 
     public MilestonePage addNewMilestoneForProject(String nameMilestone, String references, String description) {
+        log.info("Clicking 'Milestone' on the project navigation");
         clickMilestones.click();
+        log.info("Clicking 'Add Milestone' on the Milestones page");
         clickAddMilestone.click();
+        log.info("Entering name for new Milestone: " + nameMilestone);
         inputNameMilestone.sendKeys(nameMilestone);
+        log.info("Entering references for the Milestone: " + references);
         inputReferences.sendKeys(references);
+        log.info("Entering description for the Milestone: " + description);
         inputDescription.sendKeys(description);
+        log.info("Clicking 'Add Milestone' to save the Milestone");
         clickToSaveMilestoneButton.click();
         return this;
     }
 
     public String getSuccessMessage() {
+        log.info("Receiving the Success message when saved the Milestone");
         return getMessageMilestone.getText();
     }
 }

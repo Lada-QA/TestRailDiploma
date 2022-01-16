@@ -1,32 +1,16 @@
 package steps;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import pages.BasePage;
-import pages.HeaderPage;
-import pages.MilestonePage;
-import webdriver.Driver;
 
-public class MilestonePageSteps {
-    private BasePage basePage;
-    private MilestonePage milestonePage;
-    private HeaderPage headerPage;
-    WebDriver driver;
+import static steps.HomePageSteps.ID_NEW_PROJECT_FROM_API;
 
-    @Before
-    public void initPages() {
-        driver = Driver.getDriver();
-        basePage = new BasePage(driver);
-        milestonePage = new MilestonePage(driver);
-        headerPage = new HeaderPage(driver);
-    }
+public class MilestonePageSteps extends AbstractSteps {
 
     @And("goes to the project and add new milestone {string}")
     public void goesToTheProjectAndAddNewMilestone(String nameMilestone) {
-        headerPage.clickTestSuiteLinkForProject();
+        headerPage.clickTestSuiteLinkForProject(ID_NEW_PROJECT_FROM_API);
         milestonePage.addNewMilestoneForProject(nameMilestone, "This is references", "This is description");
     }
 

@@ -15,7 +15,7 @@ public class SuitePage extends BasePage {
         super(driver);
     }
 
-    public static final String ADD_TEST_SUITE = "//*[@id='suite-%s']//*[@href='index.php?/suites/view/%s']";
+    public static final String ADD_TEST_SUITE = "//*[@href='index.php?/suites/view/%s']";
     public static final String ADD_TEST_CASE = "//*[@class='button-group']//*[@href='index.php?/cases/add/%s']";
 
     @FindBy(xpath = "//*[@id='addSectionInline']")
@@ -37,9 +37,9 @@ public class SuitePage extends BasePage {
     public WebElement getMessageSuccess;
 
 
-    public SuitePage clickOnTheTestSuite(int idSuite, int idSuiteLink) {
+    public SuitePage clickOnTheTestSuite(int idSuite) {
         log.info("Click on the desired search test suite via id");
-        driver.findElement(By.xpath(String.format(ADD_TEST_SUITE, idSuite, idSuiteLink))).click();
+        driver.findElement(By.xpath(String.format(ADD_TEST_SUITE, idSuite))).click();
         return this;
     }
 

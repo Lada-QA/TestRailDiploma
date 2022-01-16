@@ -13,7 +13,7 @@ public class SuitePageSteps extends AbstractSteps {
     @When("User add section {string} and description {string} in project - This is a test project API")
     public void userAddSectionThisIsASectionInProjectThisIsATestProjectAPI(String sectionName, String sectionDescription) {
         headerPage.clickTestSuiteLinkForProject(ID_NEW_PROJECT_FROM_API)
-                .clickOnTheTestSuite(ID_SUITE_FROM_API, ID_SUITE_FROM_API)
+                .clickOnTheTestSuite(ID_SUITE_FROM_API)
                 .clickAddSection(sectionName, sectionDescription);
     }
 
@@ -25,7 +25,7 @@ public class SuitePageSteps extends AbstractSteps {
     @And("add test case {string}")
     public void addTestCaseThisIsATestCase(String testCaseTitle) {
         headerPage.clickTestSuiteLinkForProject(ID_NEW_PROJECT_FROM_API)
-                .clickOnTheTestSuite(ID_SUITE_FROM_API, ID_SUITE_FROM_API)
+                .clickOnTheTestSuite(ID_SUITE_FROM_API)
                 .clickTestCase(ID_SUITE_FROM_API)
                 .addNewTestCase(testCaseTitle);
     }

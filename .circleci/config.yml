@@ -25,7 +25,7 @@ jobs:
       # run tests!
       - run:
           name: Running tests
-          command: mvn clean install
+          command: mvn clean
       - run:
           name: Generate allure report
           command: mvn allure:report
@@ -39,7 +39,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - ui-tests
+      - ApiAndUi-tests
   periodical:
     triggers:
       - schedule:
@@ -49,4 +49,4 @@ workflows:
               only:
               - master
     jobs:
-      - ui-tests
+      - ApiAndUi-tests

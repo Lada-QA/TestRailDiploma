@@ -4,7 +4,7 @@
 # https://circleci.com/docs/2.0/browser-testing/#selenium
 version: 2
 jobs:
-  ApiAndUi-tests:
+  All-tests:
     docker:
       - image: circleci/openjdk:8u265-jdk-browsers
     working_directory: ~/repo
@@ -25,7 +25,7 @@ jobs:
       # run tests!
       - run:
           name: Running tests
-          command: mvn clean
+          command: mvn test -Dcucumber.options="--tags @SmokeTest"
       - run:
           name: Generate allure report
           command: mvn allure:report
@@ -39,7 +39,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - ApiAndUi-tests
+      - All-tests
   periodical:
     triggers:
       - schedule:
@@ -49,4 +49,4 @@ workflows:
               only:
               - master
     jobs:
-      - ApiAndUi-tests
+      - All-tests

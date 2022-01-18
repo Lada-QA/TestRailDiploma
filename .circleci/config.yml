@@ -4,7 +4,7 @@
 # https://circleci.com/docs/2.0/browser-testing/#selenium
 version: 2
 jobs:
-  ui-tests:
+  ApiAndUi-tests:
     docker:
       - image: circleci/openjdk:8u265-jdk-browsers
     working_directory: ~/repo

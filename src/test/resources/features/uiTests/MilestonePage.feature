@@ -1,6 +1,6 @@
 Feature: Test milestone
 
-  @SmokeTest
+  @SmokeTest @Ui
   Scenario: User add new milestone for project
     Given User send POST a new project 'This is a test project API' and announcement 'This is test project for API' using API
     When User opens TestRail login page

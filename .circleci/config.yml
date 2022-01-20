@@ -34,7 +34,7 @@ jobs:
           path: target/surefire-reports/junitreports
           when: always
       - store_artifacts:
-          path: target
+          path: target/allure-results
 workflows:
   version: 2
   commit:

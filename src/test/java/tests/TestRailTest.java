@@ -6,10 +6,10 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         features = {"classpath:features"},
-        glue = {"steps","webdriver"},
+        glue = {"steps", "webdriver"},
         tags = "@SmokeTest",
         plugin = {"pretty", "html:target/cucumber.html",
-                "json:target/cucumber.json"}
+                "json:target/cucumber-report/cucumber.json"}
 )
 
 public class TestRailTest extends AbstractTestNGCucumberTests {

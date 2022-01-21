@@ -28,13 +28,13 @@ jobs:
           command: mvn clean test
       - run:
           name: Generate allure report
-          command: allure generate --clean
+          command: mvn allure:report
           when: always
       - store_test_results:
           path: target/surefire-reports/junitreports
           when: always
       - store_artifacts:
-          path: target/allure-results/
+          path: target/site/allure-maven-plugin/
 workflows:
   version: 2
   commit:

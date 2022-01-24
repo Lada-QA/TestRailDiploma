@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import org.testng.ITestContext;
 
 
 @Log4j2
@@ -51,18 +52,7 @@ public class Driver {
     }
 
     @After
-    public static void closeBrowser(Scenario scenario) {
-        try {
-            String screenshotName = scenario.getName().replaceAll("", "");
-            if (scenario.isFailed()) {
-                scenario.log("This is my failure message");
-                TakesScreenshot ts = (TakesScreenshot) driver;
-                byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
-                scenario.attach(screenshot, "image/png", screenshotName);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void closeBrowser() {
         if (driver != null) {
             driver.quit();
         }

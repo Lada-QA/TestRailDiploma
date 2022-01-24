@@ -8,6 +8,7 @@ import org.testng.Assert;
 import utils.PropertyReader;
 
 import static constants.Constants.AUTH_LOGIN;
+import static utils.Waiters.waitForPageLoaded;
 
 @Log4j2
 public class LoginSteps extends AbstractSteps {
@@ -20,8 +21,8 @@ public class LoginSteps extends AbstractSteps {
 
     @And("filling in standard email and password on Login page")
     public void fillingFieldsWithEmailAndPassword() {
-        loginPage.fillingFieldsForLogin(System.getenv().getOrDefault("email", PropertyReader.getProperty("email")),
-                System.getenv().getOrDefault("password", PropertyReader.getProperty("password")));
+        loginPage.fillingFieldsForLogin(System.getenv().getOrDefault(System.getProperty("email"), PropertyReader.getProperty("email")),
+                System.getenv().getOrDefault(System.getProperty("password"), PropertyReader.getProperty("password")));
     }
 
     @When("User clicks login button")
@@ -31,8 +32,8 @@ public class LoginSteps extends AbstractSteps {
 
     @And("filling in invalid email and password on Login page")
     public void fillingInNotStandardEmailAndPasswordOnLoginPage() {
-        loginPage.fillingFieldsForLoginWithInvalidData(System.getenv().getOrDefault("invalidEmail", PropertyReader.getProperty("invalidEmail")),
-                System.getenv().getOrDefault("invalidPassword", PropertyReader.getProperty("invalidPassword")));
+        loginPage.fillingFieldsForLoginWithInvalidData(System.getenv().getOrDefault(System.getProperty("invalidEmail"), PropertyReader.getProperty("invalidEmail")),
+                System.getenv().getOrDefault(System.getProperty("invalidPassword"), PropertyReader.getProperty("invalidPassword")));
     }
 
     @Then("User getting error text - Sorry, there was a problem.")
@@ -42,6 +43,7 @@ public class LoginSteps extends AbstractSteps {
 
     @Then("Verify Login page is opened")
     public void verifyLoginPageIsOpened() {
+        waitForPageLoaded();
         Assert.assertEquals(loginPage.getUrl(), AUTH_LOGIN);
     }
 }

@@ -54,7 +54,7 @@ public class SuitePage extends BasePage {
     }
 
     public boolean sectionIsDisplayed() {
-        waitForElementLocated(driver, sectionText, 3);
+        waitForElementLocated(driver, sectionText, 10);
         return sectionText.isDisplayed();
     }
 

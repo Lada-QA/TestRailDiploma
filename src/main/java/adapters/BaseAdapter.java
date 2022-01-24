@@ -16,8 +16,8 @@ public class BaseAdapter implements APIConstants {
                 .log().all()
                 .auth()
                 .preemptive()
-                .basic(System.getenv().getOrDefault("email", PropertyReader.getProperty("email")),
-                        System.getenv().getOrDefault("password", PropertyReader.getProperty("password")))
+                .basic(System.getenv().getOrDefault(System.getProperty("email"), PropertyReader.getProperty("email")),
+                        System.getenv().getOrDefault(System.getProperty("password"), PropertyReader.getProperty("password")))
                 .header(CONTENT_TYPE_VALUE, APPLICATION_JSON_VALUE)
                 .when()
                 .get(url)
@@ -31,8 +31,8 @@ public class BaseAdapter implements APIConstants {
         return given()
                 .auth()
                 .preemptive()
-                .basic(System.getenv().getOrDefault("email", PropertyReader.getProperty("email")),
-                        System.getenv().getOrDefault("password", PropertyReader.getProperty("password")))
+                .basic(System.getenv().getOrDefault(System.getProperty("email"), PropertyReader.getProperty("email")),
+                        System.getenv().getOrDefault(System.getProperty("password"), PropertyReader.getProperty("password")))
                 .header(CONTENT_TYPE_VALUE, APPLICATION_JSON_VALUE)
                 .body(body)
                 .when()

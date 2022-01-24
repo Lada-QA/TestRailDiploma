@@ -27,6 +27,7 @@
         <allure.maven.version>2.10.0</allure.maven.version>
         <log4j.version>1.2.17</log4j.version>
         <log4j-core>2.14.1</log4j-core>
+        <jackson-dataformat-yaml.version>2.13.1</jackson-dataformat-yaml.version>
         <cucumber-core.version>7.1.0</cucumber-core.version>
         <cucumber-java.version>7.1.0</cucumber-java.version>
         <cucumber-testng.version>7.1.0</cucumber-testng.version>
@@ -48,6 +49,12 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
+                    <properties>
+                        <property>
+                            <name>dataproviderthreadcount</name>
+                            <value>2</value>
+                        </property>
+                    </properties>
                     <testFailureIgnore>true</testFailureIgnore>
                     <systemPropertyVariables>
                         <allure.results.directory>target/allure-results</allure.results.directory>
@@ -135,6 +142,12 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>${jackson-dataformat-yaml.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>

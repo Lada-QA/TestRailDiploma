@@ -10,6 +10,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.opera.OperaDriver;
 
 
 @Log4j2
@@ -28,11 +29,14 @@ public class Driver {
         if (System.getProperty("browser") != null) {
             if (System.getProperty("browser").equals("chrome")) {
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
                 log.debug("Chrome browser is started!");
+                driver = new ChromeDriver();
             } else if (System.getProperty("browser").equals("edge")) {
                 WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
+            } else if (System.getProperty("browser").equals("opera")) {
+                WebDriverManager.operadriver().setup();
+                driver = new OperaDriver();
             }
         } else {
             try {

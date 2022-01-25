@@ -2,14 +2,12 @@ package webdriver;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.opera.OperaDriver;
 
 
 @Log4j2
@@ -28,11 +26,14 @@ public class Driver {
         if (System.getProperty("browser") != null) {
             if (System.getProperty("browser").equals("chrome")) {
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
                 log.debug("Chrome browser is started!");
+                driver = new ChromeDriver();
             } else if (System.getProperty("browser").equals("edge")) {
                 WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
+            } else if (System.getProperty("browser").equals("opera")) {
+                WebDriverManager.operadriver().setup();
+                driver = new OperaDriver();
             }
         } else {
             try {
@@ -47,18 +48,7 @@ public class Driver {
     }
 
     @After
-    public static void closeBrowser(Scenario scenario) {
-        try {
-            String screenshotName = scenario.getName().replaceAll("", "");
-            if (scenario.isFailed()) {
-                scenario.log("This is my failure message");
-                TakesScreenshot ts = (TakesScreenshot) driver;
-                byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
-                scenario.attach(screenshot, "image/png", screenshotName);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void closeBrowser() {
         if (driver != null) {
             driver.quit();
         }

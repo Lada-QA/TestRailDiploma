@@ -3,8 +3,9 @@ package adapters;
 import com.google.gson.Gson;
 import constants.APIConstants;
 import io.restassured.response.Response;
-import utils.PropertyReader;
 
+import static constants.Constants.EMAIL;
+import static constants.Constants.PASSWORD;
 import static io.restassured.RestAssured.given;
 
 public class BaseAdapter implements APIConstants {
@@ -16,8 +17,7 @@ public class BaseAdapter implements APIConstants {
                 .log().all()
                 .auth()
                 .preemptive()
-                .basic(System.getenv().getOrDefault("email", PropertyReader.getProperty("email")),
-                        System.getenv().getOrDefault("password", PropertyReader.getProperty("password")))
+                .basic(EMAIL, PASSWORD)
                 .header(CONTENT_TYPE_VALUE, APPLICATION_JSON_VALUE)
                 .when()
                 .get(url)
@@ -31,8 +31,7 @@ public class BaseAdapter implements APIConstants {
         return given()
                 .auth()
                 .preemptive()
-                .basic(System.getenv().getOrDefault("email", PropertyReader.getProperty("email")),
-                        System.getenv().getOrDefault("password", PropertyReader.getProperty("password")))
+                .basic(EMAIL, PASSWORD)
                 .header(CONTENT_TYPE_VALUE, APPLICATION_JSON_VALUE)
                 .body(body)
                 .when()

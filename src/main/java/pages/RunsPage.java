@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static utils.Waiters.waitForElementLocated;
+import static utils.Waiters.waitForPageLoaded;
+
 @Log4j2
 public class RunsPage extends BasePage {
 
@@ -43,6 +46,7 @@ public class RunsPage extends BasePage {
     public WebElement clickSafeAddTestRun;
 
     public RunsPage addNewRunTestForProject() {
+        waitForPageLoaded();
         log.info("Clicking 'Test Runs&Results' on the project navigation");
         runsNavigation.click();
         log.info("Clicking 'Add Test Run' on the Runs page");
@@ -65,6 +69,7 @@ public class RunsPage extends BasePage {
     }
 
     public String getSuccessMessage() {
+        waitForElementLocated(driver, getMessage, 10);
         log.info("Receiving the Success message when saved the Test Run");
         return getMessage.getText();
     }

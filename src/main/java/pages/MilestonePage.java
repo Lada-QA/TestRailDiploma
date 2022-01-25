@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static utils.Waiters.waitForElementLocated;
+import static utils.Waiters.waitForPageLoaded;
+
 @Log4j2
 public class MilestonePage extends BasePage {
 
@@ -34,6 +37,7 @@ public class MilestonePage extends BasePage {
     public WebElement getMessageMilestone;
 
     public MilestonePage addNewMilestoneForProject(String nameMilestone, String references, String description) {
+        waitForPageLoaded();
         log.info("Clicking 'Milestone' on the project navigation");
         clickMilestones.click();
         log.info("Clicking 'Add Milestone' on the Milestones page");

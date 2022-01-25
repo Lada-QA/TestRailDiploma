@@ -1,5 +1,7 @@
 package constants;
 
+import utils.PropertyReader;
+
 import static constants.Constants.BASE_URL;
 
 public interface APIConstants {

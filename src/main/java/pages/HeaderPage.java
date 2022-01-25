@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static utils.Waiters.waitForPageLoaded;
+
 @Log4j2
 public class HeaderPage extends BasePage {
 
@@ -21,6 +23,7 @@ public class HeaderPage extends BasePage {
     public WebElement clickLogout;
 
     public void clickLogoutButton() {
+        waitForPageLoaded();
         log.info("Click dropDown menu for choose the option");
         clickDropDownMenu.click();
         log.info("Click on the desired option - Log Out");

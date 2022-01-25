@@ -49,12 +49,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <properties>
-                        <property>
-                            <name>dataproviderthreadcount</name>
-                            <value>2</value>
-                        </property>
-                    </properties>
                     <testFailureIgnore>true</testFailureIgnore>
                     <systemPropertyVariables>
                         <allure.results.directory>target/allure-results</allure.results.directory>

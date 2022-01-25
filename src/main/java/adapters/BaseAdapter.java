@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import constants.APIConstants;
 import io.restassured.response.Response;
 
+import static constants.Constants.EMAIL;
+import static constants.Constants.PASSWORD;
 import static io.restassured.RestAssured.given;
 
 public class BaseAdapter implements APIConstants {

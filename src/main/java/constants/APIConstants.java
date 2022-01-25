@@ -13,6 +13,4 @@ public interface APIConstants {
     String ADD_SUITE_API  = BASE_URL + "/api/v2/add_suite/%s";
     String GET_SUITE_API = BASE_URL + "/api/v2/get_suite/%s";
     String DELETE_PROJECT_API = BASE_URL + "/api/v2/delete_project/%s";
-    String EMAIL = System.getenv().getOrDefault(System.getProperty("email"), PropertyReader.getProperty("email"));
-    String PASSWORD = System.getenv().getOrDefault(System.getProperty("password"), PropertyReader.getProperty("password"));
 }

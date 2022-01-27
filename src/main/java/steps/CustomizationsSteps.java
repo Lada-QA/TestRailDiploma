@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class CustomizationsSteps {
+    public static String TYPE_CASE_FIELD;
+    public static String ITEMS_CASE_FIELD;
 
     @When("User send POST request for add new case field with Random name")
     public void userSendPostRequestForAddNewCaseField() {
@@ -47,11 +49,13 @@ public class CustomizationsSteps {
         configsList.add(configs);
         caseField.setConfigs(configsList);
         new CaseFieldAdapter().createNewCaseField(caseField);
+        TYPE_CASE_FIELD = caseField.getType();
+        ITEMS_CASE_FIELD = caseField.getConfigs().get(0).getOptions().getItems();
     }
 
     @Then("Verify case field is created successfully via API")
     public void verifyCaseFieldIsCreatedSuccessfullyViaAPI() {
-        int code = new CaseFieldAdapter().getStatusCode();
-        Assert.assertEquals(code, 401);
+        Assert.assertEquals(TYPE_CASE_FIELD, "Multiselect");
+        Assert.assertEquals(ITEMS_CASE_FIELD, "1, One\n2, Two");
     }
 }

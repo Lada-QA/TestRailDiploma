@@ -13,4 +13,6 @@ public interface APIConstants {
     String DELETE_PROJECT_API = BASE_URL + "/api/v2/delete_project/%s";
     String ADD_CASE_FIELD_API = BASE_URL + "/api/v2/add_case_field";
     String GET_CASE_FIELD_API = BASE_URL + "/api/v2/get_case_fields";
+    String ADD_TEST_PLAN_API = BASE_URL + "/api/v2/add_plan/%s";
+    String GET_TEST_PLAN_API = BASE_URL + "/api/v2/get_plan/%s";
 }

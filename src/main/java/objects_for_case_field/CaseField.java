@@ -10,6 +10,7 @@ import java.util.ArrayList;
 @Data
 @Builder
 public class CaseField {
+    int id;
     String type;
     String name;
     String label;

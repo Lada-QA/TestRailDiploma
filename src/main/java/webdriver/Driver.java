@@ -23,6 +23,10 @@ public class Driver {
 
     @Before(order = 1)
     public static void setup() {
+        initDriver();
+    }
+
+    public static void initDriver() {
         if (System.getProperty("browser") != null) {
             if (System.getProperty("browser").equals("chrome")) {
                 WebDriverManager.chromedriver().setup();

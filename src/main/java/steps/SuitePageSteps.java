@@ -34,4 +34,9 @@ public class SuitePageSteps extends AbstractSteps {
     public void verifyTestCaseWasAdded() {
         Assert.assertEquals(suitePage.testCaseIsDisplayed(), "Successfully added the new test case. Add another");
     }
+
+    @When("User add new test case {string} in section")
+    public void userAddNewTestCaseInSection(String caseName) {
+        suitePage.addNewTestCaseInSection(caseName);
+    }
 }

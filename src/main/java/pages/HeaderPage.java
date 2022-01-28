@@ -15,7 +15,7 @@ public class HeaderPage extends BasePage {
         super(driver);
     }
 
-    public static final String SUITE_TEST_LINK = "//*[@id='project-%s']//*[text()='Test Suites']";
+    public static final String SUITE_TEST_LINK = "//*[@id='project-%s']//*[contains(text(),'suite')]";
 
     @FindBy(xpath = "//*[@id='navigation-user']/span[@class='caret']")
     public WebElement clickDropDownMenu;

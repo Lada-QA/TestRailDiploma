@@ -9,7 +9,7 @@ import steps.TestListener;
 @CucumberOptions(
         features = {"classpath:features"},
         glue = {"steps", "webdriver"},
-        tags = "@SmokeTest,@Ui,@API",
+        tags = "@SmokeTest",
         plugin = {"pretty", "html:target/cucumber.html",
                 "json:target/cucumber-report/cucumber.json"}
 )

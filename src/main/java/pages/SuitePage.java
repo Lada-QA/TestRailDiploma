@@ -33,6 +33,15 @@ public class SuitePage extends BasePage {
     @FindBy(xpath = "//*[text()='This is a section test']")
     public WebElement sectionText;
 
+    @FindBy(xpath = "//div[contains(@class,'grid-actions')]//a[contains(text(),'ase')] ")
+    public WebElement caseInSection;
+
+    @FindBy(xpath = "//*[@class='icon-button-accept']")
+    public WebElement submitSave;
+
+    @FindBy(xpath = "//*[contains(@class, 'addForm')]/*[contains(@class,'form-control')]")
+    public WebElement inputCaseTitle;
+
     @FindBy(xpath = "//*[@class='message message-success']")
     public WebElement getMessageSuccess;
 
@@ -66,5 +75,14 @@ public class SuitePage extends BasePage {
         log.info("Add new test case for suite via id: " + idSuite);
         driver.findElement(By.xpath(String.format(ADD_TEST_CASE, idSuite))).click();
         return new CasePage(driver);
+    }
+
+    public SuitePage addNewTestCaseInSection(String caseName) {
+        waitForElementLocated(driver, caseInSection, 3);
+        caseInSection.click();
+        log.info("Add new test case with name: " + caseName);
+        inputCaseTitle.sendKeys(caseName);
+        submitSave.click();
+        return this;
     }
 }

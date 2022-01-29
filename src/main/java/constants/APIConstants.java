@@ -1,7 +1,5 @@
 package constants;
 
-import utils.PropertyReader;
-
 import static constants.Constants.BASE_URL;
 
 public interface APIConstants {
@@ -13,4 +11,7 @@ public interface APIConstants {
     String ADD_SUITE_API  = BASE_URL + "/api/v2/add_suite/%s";
     String GET_SUITE_API = BASE_URL + "/api/v2/get_suite/%s";
     String DELETE_PROJECT_API = BASE_URL + "/api/v2/delete_project/%s";
+    String ADD_CASE_FIELD_API = BASE_URL + "/api/v2/add_case_field";
+    String ADD_TEST_PLAN_API = BASE_URL + "/api/v2/add_plan/%s";
+    String GET_TEST_PLAN_API = BASE_URL + "/api/v2/get_plan/%s";
 }

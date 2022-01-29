@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static utils.Waiters.waitForElementLocated;
 import static utils.Waiters.waitForPageLoaded;
 
 @Log4j2

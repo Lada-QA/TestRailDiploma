@@ -15,4 +15,14 @@ public class RunsPageSteps extends AbstractSteps {
     public void verifyTestRunWasAdded() {
         Assert.assertEquals(runsPage.getSuccessMessage(), "Successfully added the new test run.");
     }
+
+    @And("goes to the runs page and add the test result")
+    public void goesToTheRunsPageAndAddTheTestResult() {
+        runsPage.addTestResult("This test is passed");
+    }
+
+    @Then("Verify test result was added")
+    public void verifyTestResultWasAdded() {
+        Assert.assertTrue(runsPage.isTestResultAdded());
+    }
 }

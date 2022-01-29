@@ -45,6 +45,33 @@ public class RunsPage extends BasePage {
     @FindBy(id = "accept")
     public WebElement clickSafeAddTestRun;
 
+    @FindBy(xpath = "//td[@class='id']/*")
+    public WebElement clickSectionTest;
+
+    @FindBy(xpath = "//*[contains(@class,'text-secondary')]")
+    public WebElement clickEditLink;
+
+    @FindBy(xpath = "//*[@class='chzn-single']")
+    public WebElement clickDropDownStatusMenu;
+
+    @FindBy(id = "addResultStatus_chzn_o_0")
+    public WebElement chooseTestStatusAndClick;
+
+    @FindBy(id = "addResultComment_display")
+    public WebElement inputComment;
+
+    @FindBy(xpath = "//*[@id='addResultAssignTo_chzn']/*")
+    public WebElement clickDropDownAssign;
+
+    @FindBy(id = "addResultAssignTo_chzn_o_2")
+    public WebElement chooseAndClickToAssign;
+
+    @FindBy(id = "addResultSubmit")
+    public WebElement clickButtonEditResult;
+
+    @FindBy(xpath = "//*[contains(@class,'change-column-content')]")
+    public WebElement textCommentIsDisplayed;
+
     public RunsPage addNewRunTestForProject() {
         waitForPageLoaded();
         log.info("Clicking 'Test Runs&Results' on the project navigation");
@@ -72,5 +99,35 @@ public class RunsPage extends BasePage {
         waitForElementLocated(driver, getMessage, 10);
         log.info("Receiving the Success message when saved the Test Run");
         return getMessage.getText();
+    }
+
+    public RunsPage addTestResult(String textComment) {
+        waitForElementLocated(driver, runsNavigation, 5);
+        runsNavigation.click();
+        log.info("Clicking 'Add Test Run' on the Runs page");
+        clickAddTestRunButton.click();
+        log.info("Choosing and click the test suite from drop down menu on the modal window");
+        setSuite.click();
+        log.info("Clicking button 'Ok' to safe the selection");
+        clickButtonOk.click();
+        clickSafeAddTestRun.click();
+        clickSectionTest.click();
+        waitForElementLocated(driver, clickEditLink, 5);
+        clickEditLink.click();
+        waitForElementLocated(driver, clickDropDownStatusMenu, 5);
+        clickDropDownStatusMenu.click();
+        waitForElementLocated(driver, chooseTestStatusAndClick, 5);
+        chooseTestStatusAndClick.click();
+        log.info("Was input comment: " + textComment);
+        inputComment.sendKeys(textComment);
+        clickDropDownAssign.click();
+        chooseAndClickToAssign.click();
+        clickButtonEditResult.click();
+        return this;
+    }
+
+    public boolean isTestResultAdded() {
+        waitForElementLocated(driver, textCommentIsDisplayed, 5);
+        return textCommentIsDisplayed.isDisplayed();
     }
 }

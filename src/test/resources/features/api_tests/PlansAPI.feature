@@ -1,5 +1,6 @@
 Feature: Plans
 
+  @SmokeTest @API
   Scenario: Add new test plan
     Given User send POST a new project 'This is a test project API' and announcement 'This is test project for API' using API
     And User send POST request for add new suite 'This is a new test suite' with description 'This is a description' in the project using API

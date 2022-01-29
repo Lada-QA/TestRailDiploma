@@ -126,7 +126,7 @@ public class RunsPage extends BasePage {
         return this;
     }
 
-    public boolean testResultWasAdded() {
+    public boolean isTestResultAdded() {
         waitForElementLocated(driver, textCommentIsDisplayed, 5);
         return textCommentIsDisplayed.isDisplayed();
     }

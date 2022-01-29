@@ -23,6 +23,6 @@ public class RunsPageSteps extends AbstractSteps {
 
     @Then("Verify test result was added")
     public void verifyTestResultWasAdded() {
-        Assert.assertTrue(runsPage.testResultWasAdded());
+        Assert.assertTrue(runsPage.isTestResultAdded());
     }
 }

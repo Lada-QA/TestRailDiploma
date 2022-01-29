@@ -78,7 +78,7 @@ public class SuitePage extends BasePage {
     }
 
     public SuitePage addNewTestCaseInSection(String caseName) {
-        waitForElementLocated(driver, caseInSection, 3);
+        waitForElementLocated(driver, caseInSection, 10);
         caseInSection.click();
         log.info("Add new test case with name: " + caseName);
         inputCaseTitle.sendKeys(caseName);

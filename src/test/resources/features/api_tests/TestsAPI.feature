@@ -20,5 +20,5 @@ Feature: API Tests
   @SmokeTest @API
   Scenario: Delete project - This is a test project API
     Given User send POST to create a new project 'This is a test project API' using API
-    Then User send POST request for delete the project 'This is a test project API'
-    And Verify project is delete successfully via API
+    And User send POST request for delete the project 'This is a test project API'
+    Then Verify project is delete successfully via API

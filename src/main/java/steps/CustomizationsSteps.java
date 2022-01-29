@@ -10,25 +10,17 @@ import objects_for_case_field.Options;
 import org.testng.Assert;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-public class CustomizationsSteps {
+import static utils.Random.RANDOM_NAME;
+import static utils.Random.createRandomName;
+
+public class CustomizationsSteps extends AbstractSteps{
     public static String TYPE_CASE_FIELD;
     public static String ITEMS_CASE_FIELD;
 
     @When("User send POST request for add new case field with Random name")
     public void userSendPostRequestForAddNewCaseField() {
-        int leftLimit = 97;
-        int rightLimit = 122;
-        int targetStringLength = 10;
-        Random random = new Random();
-        StringBuilder buffer = new StringBuilder(targetStringLength);
-        for (int i = 0; i < targetStringLength; i++) {
-            int randomLimitedInt = leftLimit + (int)
-                    (random.nextFloat() * (rightLimit - leftLimit + 1));
-            buffer.append((char) randomLimitedInt);
-        }
-        String generatedString = buffer.toString();
+        createRandomName();
         Configs configs = new Configs();
         Context context = new Context();
         Options options = new Options();
@@ -40,7 +32,7 @@ public class CustomizationsSteps {
         configs.setOptions(options);
         CaseField caseField = CaseField.builder()
                 .type("Multiselect")
-                .name(generatedString)
+                .name(RANDOM_NAME)
                 .label("My Multiselect")
                 .description("my custom Multiselect description")
                 .includeAll(true)

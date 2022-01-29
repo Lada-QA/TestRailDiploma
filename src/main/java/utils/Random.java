@@ -4,7 +4,7 @@ public class Random {
 
     public static String RANDOM_NAME;
 
-    public Random() {
+    private Random() {
     }
 
     public static String createRandomName(){
